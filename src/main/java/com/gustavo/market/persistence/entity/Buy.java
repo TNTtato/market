@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "buys")
@@ -34,4 +35,7 @@ public class Buy {
     @ManyToOne
     @JoinColumn(name = "id_client", insertable = false, updatable = false)
     private Client client;
+
+    @OneToMany(mappedBy = "product")
+    private List<BuyProduct> buyProducts;
 }

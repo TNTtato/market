@@ -1,8 +1,6 @@
 package com.gustavo.market.persistence.entity;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,4 +18,12 @@ public class BuyProduct {
     private Integer quantity;
     private Double total;
     private Boolean state;
+
+    @ManyToOne
+    @JoinColumn(name = "id_buy", insertable = false, updatable = false)
+    private Buy buy;
+
+    @ManyToOne
+    @JoinColumn(name = "id_product", insertable = false, updatable = false)
+    private Product product;
 }
