@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "categories")
 @Data
@@ -19,4 +21,7 @@ public class Category {
 
     private String description;
     private Boolean state;
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
 }
