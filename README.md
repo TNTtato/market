@@ -45,22 +45,22 @@ Tables:
 
 
 ### buys
-| Field          | Type              |
-|----------------|-------------------|
-| id_buy         | INT *pk*          |
-| buy_date       | DATETIME          |
-| payment_method | CHAR(1)           |
-| comment        | VARCHAR(300)      |
-| state          | CHAR(1)           |
-| id_client      | INT *fk(clients)* |
+| Field          | Type                      |
+|----------------|---------------------------|
+| id_buy         | INT *pk*                  |
+| buy_date       | DATETIME                  |
+| payment_method | CHAR(1)                   |
+| comment        | VARCHAR(300)              |
+| state          | CHAR(1)                   |
+| id_client      | VARCHAR(20) *fk(clients)* |
 
 
 ### clients
-| Field     | Type         |
-|-----------|--------------|
-| id_client | INT *pk*     |
-| name      | VARCHAR(40)  |
-| lastname  | VARCHAR(100) |
-| cellphone | DECIMAL      |
-| address   | VARCHAR(80)  |
-| email     | VARCHAR(70)  |
+| Field     | Type             |
+|-----------|------------------|
+| id_client | VARCHAR(20) *pk* |
+| name      | VARCHAR(40)      |
+| lastname  | VARCHAR(100)     |
+| cellphone | DECIMAL          |
+| address   | VARCHAR(80)      |
+| email     | VARCHAR(70)      |
