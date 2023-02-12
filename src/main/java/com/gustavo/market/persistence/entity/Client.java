@@ -1,12 +1,11 @@
 package com.gustavo.market.persistence.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "clients")
@@ -24,4 +23,7 @@ public class Client {
     private Integer cellphone;
     private String address;
     private String email;
+
+    @OneToMany(mappedBy = "client")
+    private List<Buy> buys;
 }

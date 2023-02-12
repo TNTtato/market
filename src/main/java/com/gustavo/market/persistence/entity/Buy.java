@@ -30,4 +30,8 @@ public class Buy {
 
     private String comment;
     private String state;
+
+    @ManyToOne
+    @JoinColumn(name = "id_client", insertable = false, updatable = false)
+    private Client client;
 }
