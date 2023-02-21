@@ -17,7 +17,6 @@ public class ProductRepository implements ProductDomainRepository {
     private ProductCrudRepository productCrudRepository;
     private ProductMapper productMapper;
 
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     public ProductRepository(ProductCrudRepository productCrudRepository, ProductMapper productMapper) {
         this.productCrudRepository = productCrudRepository;
