@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "buys")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Buy {
@@ -35,7 +36,73 @@ public class Buy {
     @ManyToOne
     @JoinColumn(name = "id_client", insertable = false, updatable = false)
     private Client client;
-
+/*
     @OneToMany(mappedBy = "product")
-    private List<BuyProduct> buyProducts;
+    private List<BuyProduct> buysProducts;
+ */
+    public Long getIdBuy() {
+        return idBuy;
+    }
+
+    public void setIdBuy(Long idBuy) {
+        this.idBuy = idBuy;
+    }
+
+    public String getIdClient() {
+        return idClient;
+    }
+
+    public void setIdClient(String idClient) {
+        this.idClient = idClient;
+    }
+
+    public LocalDateTime getBuyDate() {
+        return buyDate;
+    }
+
+    public void setBuyDate(LocalDateTime buyDate) {
+        this.buyDate = buyDate;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+/*
+    public List<BuyProduct> getBuysProducts() {
+        return buysProducts;
+    }
+
+    public void setBuysProducts(List<BuyProduct> buyProducts) {
+        this.buysProducts = buyProducts;
+    }
+
+ */
 }

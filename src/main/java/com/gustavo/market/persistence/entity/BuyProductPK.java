@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @Embeddable
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class BuyProductPK implements Serializable {
@@ -19,4 +18,19 @@ public class BuyProductPK implements Serializable {
     @Column(name = "id_product")
     private Long idProduct;
 
+    public Long getIdBuy() {
+        return idBuy;
+    }
+
+    public void setIdBuy(Long idBuy) {
+        this.idBuy = idBuy;
+    }
+
+    public Long getIdProduct() {
+        return idProduct;
+    }
+
+    public void setIdProduct(Long idProduct) {
+        this.idProduct = idProduct;
+    }
 }
