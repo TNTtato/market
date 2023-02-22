@@ -23,11 +23,8 @@ public class Client {
     private String address;
     private String email;
 
-    /*
     @OneToMany(mappedBy = "client")
     private List<Buy> buys;
-
-     */
 
     public String getIdClient() {
         return idClient;
@@ -77,7 +74,6 @@ public class Client {
         this.email = email;
     }
 
-    /*
     public List<Buy> getBuys() {
         return buys;
     }
@@ -86,5 +82,4 @@ public class Client {
         this.buys = buys;
     }
 
-     */
 }

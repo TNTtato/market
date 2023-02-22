@@ -19,10 +19,12 @@ public class BuyProduct {
     private Boolean state;
 
     @ManyToOne
+    @MapsId("idBuy")
     @JoinColumn(name = "id_buy", insertable = false, updatable = false)
     private Buy buy;
 
     @ManyToOne
+    @MapsId("idProduct")
     @JoinColumn(name = "id_product", insertable = false, updatable = false)
     private Product product;
 

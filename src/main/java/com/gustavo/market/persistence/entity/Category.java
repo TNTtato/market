@@ -1,5 +1,6 @@
 package com.gustavo.market.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,12 +21,11 @@ public class Category {
 
     private String description;
     private Boolean state;
-/*
+
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Product> products;
 
-
- */
     public Long getIdCategory() {
         return idCategory;
     }
@@ -50,7 +50,6 @@ public class Category {
         this.state = state;
     }
 
-    /*
     public List<Product> getProducts() {
         return products;
     }
@@ -59,5 +58,5 @@ public class Category {
         this.products = products;
     }
 
-     */
+
 }

@@ -2,10 +2,11 @@ package com.gustavo.market.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -36,10 +37,12 @@ public class Buy {
     @ManyToOne
     @JoinColumn(name = "id_client", insertable = false, updatable = false)
     private Client client;
-/*
-    @OneToMany(mappedBy = "product")
-    private List<BuyProduct> buysProducts;
- */
+
+    @OneToMany(mappedBy = "buy", cascade = {CascadeType.ALL})
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Fetch(FetchMode.SELECT)
+    private List<BuyProduct> products;
+
     public Long getIdBuy() {
         return idBuy;
     }
@@ -95,14 +98,14 @@ public class Buy {
     public void setClient(Client client) {
         this.client = client;
     }
-/*
-    public List<BuyProduct> getBuysProducts() {
-        return buysProducts;
+
+    public List<BuyProduct> getProducts() {
+        return products;
     }
 
-    public void setBuysProducts(List<BuyProduct> buyProducts) {
-        this.buysProducts = buyProducts;
+    public void setProducts(List<BuyProduct> buyProducts) {
+        this.products = buyProducts;
     }
 
- */
+
 }

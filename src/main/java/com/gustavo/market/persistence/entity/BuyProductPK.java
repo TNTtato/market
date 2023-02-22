@@ -7,11 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
-public class BuyProductPK implements Serializable {
+public class BuyProductPK implements Serializable{
 
     @Column(name = "id_buy")
     private Long idBuy;
@@ -32,5 +33,18 @@ public class BuyProductPK implements Serializable {
 
     public void setIdProduct(Long idProduct) {
         this.idProduct = idProduct;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BuyProductPK that = (BuyProductPK) o;
+        return Objects.equals(idBuy, that.idBuy) && Objects.equals(idProduct, that.idProduct);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idBuy, idProduct);
     }
 }
