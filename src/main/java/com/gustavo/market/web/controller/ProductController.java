@@ -3,6 +3,8 @@ package com.gustavo.market.web.controller;
 import com.gustavo.market.domain.ProductDomain;
 import com.gustavo.market.domain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,32 +22,40 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductDomain> getAll() {
-        return productService.getAll();
+    public ResponseEntity<List<ProductDomain>> getAll() {
+
+        List<ProductDomain> products = productService.getAll();
+        return products.isEmpty() ? ResponseEntity.noContent().build() : new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     @GetMapping("{id}")
-    public Optional<ProductDomain> getProduct(@PathVariable("id") long productId) {
-        return productService.getProduct(productId);
+    public ResponseEntity<Optional<ProductDomain>> getProduct(@PathVariable("id") long productId) {
+        Optional<ProductDomain> product = productService.getProduct(productId);
+        return !product.isPresent() ? ResponseEntity.notFound().build() : new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @GetMapping("category/{id}")
-    public  List<ProductDomain> getByCategoryId(@PathVariable("id") long categoryId) {
-        return productService.getByCategoryId(categoryId);
+    public ResponseEntity<List<ProductDomain>> getByCategoryId(@PathVariable("id") long categoryId) {
+        List<ProductDomain> products = productService.getByCategoryId(categoryId);
+        return products.isEmpty() ? ResponseEntity.noContent().build() : new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     @GetMapping("scarce/{quantity}")
-    public  Optional<List<ProductDomain>> getScarce(@PathVariable int quantity) {
-        return productService.getScarce(quantity);
+    public ResponseEntity<Optional<List<ProductDomain>>> getScarce(@PathVariable int quantity) {
+        Optional<List<ProductDomain>> products = productService.getScarce(quantity);
+        return products.get().isEmpty() ? ResponseEntity.noContent().build() : new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     @PostMapping
-    public ProductDomain save(@RequestBody ProductDomain productDomain) {
-        return productService.save(productDomain);
+    public ResponseEntity<ProductDomain> save(@RequestBody ProductDomain productDomain) {
+        if (productDomain == null) return ResponseEntity.badRequest().build();
+        ProductDomain product = productService.save(productDomain);
+        return product == null ? ResponseEntity.badRequest().build() : new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")
-    public boolean delete(@PathVariable("id") long productId) {
-        return productService.delete(productId);
+    public ResponseEntity delete(@PathVariable("id") long productId) {
+
+        return productService.delete(productId) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }
